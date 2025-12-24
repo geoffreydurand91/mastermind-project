@@ -20,3 +20,6 @@ Le programme crée une socket et tente de se connecter à l'adresse IP spécifi�
 
 server_udp.c
 Ce serveur crée une socket UDP (DGRAM). Il génère un code secret au lancement. Ensuite, il attend en boucle infinie de recevoir un paquet (recvfrom). Dès qu'il reçoit une proposition d'un client, il compare avec le secret, prépare la réponse et la renvoie immédiatement à l'adresse de l'expéditeur (sendto).
+
+client_udp.c
+Ce client utilise sendto pour envoyer sa proposition directement à l'adresse IP et au port du serveur, sans établir de connexion préalable. Il utilise ensuite recvfrom pour attendre la réponse. La logique utilisateur (boucle de saisie) reste identique à la version TCP.
