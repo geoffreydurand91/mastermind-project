@@ -3,20 +3,26 @@ CC = gcc
 CFLAGS = -Wall -I.
 
 # cibles finales
-all: server_tcp client_tcp
+all: server_tcp client_tcp server_udp client_udp
 
-# compilation du serveur
+# compilation tcp
 server_tcp: server_tcp.o
 	$(CC) -o server_tcp server_tcp.o
 
-# compilation du client
 client_tcp: client_tcp.o
 	$(CC) -o client_tcp client_tcp.o
 
-# regle generique pour les fichiers .o
+# compilation udp
+server_udp: server_udp.o
+	$(CC) -o server_udp server_udp.o
+
+client_udp: client_udp.o
+	$(CC) -o client_udp client_udp.o
+
+# regle generique
 %.o: %.c common.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# nettoyage des fichiers generes
+# nettoyage
 clean:
-	rm -f *.o server_tcp client_tcp
+	rm -f *.o server_tcp client_tcp server_udp client_udp
