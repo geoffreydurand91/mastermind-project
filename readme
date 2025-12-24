@@ -1,0 +1,14 @@
+Le fichier common.h sert de contrat : 
+il définit le port de connexion et la structure des données échangées 
+(la proposition du client et la réponse du serveur) 
+pour garantir que les deux programmes se comprennent. 
+Les fichiers .c contiennent pour l'instant la structure minimale (headers nécessaires et fonction main)
+pour compiler sans erreur.
+
+Le serveur initialise une socket TCP et se met en écoute sur le port 5000. 
+Lorsqu'un client se connecte, le serveur génère une combinaison aléatoire de 4 chiffres. 
+Il rentre ensuite dans une boucle infinie où il reçoit la proposition du client, 
+calcule le nombre de chiffres bien placés et mal placés, 
+met à jour l'état de la partie (gagné/perdu/en cours) et renvoie la réponse au client.
+
+Le programme crée une socket et tente de se connecter à l'adresse IP spécifiée (ici 127.0.0.1 pour jouer en local). Une fois connecté, il entre dans une boucle infinie où il demande à l'utilisateur de saisir 4 chiffres séparés par des espaces. Il remplit la structure de requête, l'envoie au serveur, attend la réponse, et affiche les indices fournis par le serveur. Si le serveur signale la victoire (code_etat == 1), le client affiche un message de félicitations et ferme la connexion.
