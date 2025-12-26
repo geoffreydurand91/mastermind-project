@@ -3,7 +3,7 @@ CC = gcc
 CFLAGS = -Wall -I.
 
 # cibles finales
-all: server_tcp client_tcp server_udp client_udp
+all: server_tcp client_tcp server_udp client_udp server_multi
 
 # compilation tcp
 server_tcp: server_tcp.o
@@ -18,6 +18,9 @@ server_udp: server_udp.o
 
 client_udp: client_udp.o
 	$(CC) -o client_udp client_udp.o
+
+server_multi: server_multi.o
+	$(CC) -o server_multi server_multi.o
 
 # regle generique
 %.o: %.c common.h

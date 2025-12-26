@@ -23,3 +23,7 @@ Ce serveur crée une socket UDP (DGRAM). Il génère un code secret au lancement
 
 client_udp.c
 Ce client utilise sendto pour envoyer sa proposition directement à l'adresse IP et au port du serveur, sans établir de connexion préalable. Il utilise ensuite recvfrom pour attendre la réponse. La logique utilisateur (boucle de saisie) reste identique à la version TCP.
+
+server_multi.c
+Pour garder une trace du travail précedent, nous n'allons pas écraser server_tcp.c mais créer un nouveau fichier server_multi.c
+Le code est similaire au serveur TCP précédent, mais après le accept, on appelle fork(). Le processus fils (pid == 0) ferme la socket d'écoute, génère un code secret unique pour sa partie, et gère la boucle de jeu jusqu'à la déconnexion. Le processus père ferme la socket du client (car le fils s'en charge) et retourne attendre une nouvelle connexion. La ligne signal(SIGCHLD, SIG_IGN) permet d'éviter les "processus zombies" quand un fils se termine.
